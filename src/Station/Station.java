@@ -19,17 +19,9 @@ public class Station {
 
     public Station(Station station) {
         this.maxCountModules = station.maxCountModules;
-        this.modules = new ArrayList<>();
-
-        if (station.modules != null) {
-            for (Module module : station.modules) {
-
-            }
-        }
+        if (station.modules != null) this.modules = new ArrayList<>(station.modules);
+        else this.modules = new ArrayList<>();
     }
-
-
-
 
     public void addModule(Module module) {
         if (modules.size() == maxCountModules) {
@@ -45,5 +37,10 @@ public class Station {
             return;
         }
         modules.remove(index);
+    }
+
+    public void transferFrom(Station station) {
+        modules.addAll(station.modules);
+        station.modules.clear();
     }
 }

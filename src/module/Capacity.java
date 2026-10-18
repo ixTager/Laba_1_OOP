@@ -1,24 +1,21 @@
 package module;
 
 public class Capacity {
-    private int capacity;
+    private int value;
 
     public Capacity() {
-        this.capacity = 0;
+        this.value = 0;
     }
 
     public Capacity(int capacity) {
-        this.capacity = capacity;
+        this.value = capacity;
     }
-
 
     public int getValue() {
-        return capacity;
+        return value;
     }
-    private void setValue(int capacity) {
-        if (capacity < 0) {
-            this.capacity = 0;
-        }
-        else this.capacity = capacity;
+
+    public void setValue(int capacity) {
+        this.value = capacity;
     }
 }

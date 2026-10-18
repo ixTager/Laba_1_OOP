@@ -1,33 +1,30 @@
 package module;
 
 public class Durability {
-    private int durability;
+    private int value;
 
     public Durability() {
-        this.durability = 0;
+        this.value = 0;
     }
 
     public Durability(int durability) {
-        this.durability = durability;
+        this.value = durability;
     }
 
-
-
     public int getValue() {
-        return durability;
+        return value;
     }
 
     public void setValue(int durability) {
-        this.durability = durability;
+        this.value = durability;
     }
 
     public void decrease(int amount) {
-        this.durability -= amount;
+        this.value -= amount;
     }
 
-    // Не уверен
     public void repair(int amount) {
-        this.durability += amount;
+        this.value += amount;
     }
 
 }

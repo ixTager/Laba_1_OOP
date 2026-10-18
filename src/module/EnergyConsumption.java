@@ -1,29 +1,26 @@
 package module;
 
 public class EnergyConsumption {
-    private int energyConsumption;
+    private int value;
 
     public EnergyConsumption() {
-        this.energyConsumption = 0;
+        this.value = 0;
     }
 
-    public EnergyConsumption(int energyConsumption) {
-        this.energyConsumption = energyConsumption;
+    public EnergyConsumption(int value) {
+        this.value = value;
     }
-
-
 
     public int getValue() {
-        return energyConsumption;
+        return value;
     }
 
     public void setValue(int energyConsumption) {
-        if (energyConsumption < 0) this.energyConsumption = 0;
-        else this.energyConsumption = energyConsumption;
+        if (energyConsumption < 0) this.value = 0;
+        else this.value = energyConsumption;
     }
 
     public void increase(int amount) {
-        this.energyConsumption += amount;
+        this.value += amount;
     }
-
 }
