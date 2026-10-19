@@ -1,4 +1,4 @@
-package module;
+package module.moduleData;
 
 public class Durability {
     private int value;
@@ -8,7 +8,8 @@ public class Durability {
     }
 
     public Durability(int durability) {
-        this.value = durability;
+        if (durability > 0) this.value = durability;
+        else this.value = 0;
     }
 
     public int getValue() {
@@ -16,7 +17,7 @@ public class Durability {
     }
 
     public void setValue(int durability) {
-        this.value = durability;
+        if (durability > 0) this.value = durability;
     }
 
     public void decrease(int amount) {

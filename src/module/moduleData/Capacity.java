@@ -1,4 +1,4 @@
-package module;
+package module.moduleData;
 
 public class Capacity {
     private int value;
@@ -8,7 +8,8 @@ public class Capacity {
     }
 
     public Capacity(int capacity) {
-        this.value = capacity;
+        if (capacity > 0) this.value = capacity;
+        else this.value = 0;
     }
 
     public int getValue() {
@@ -16,6 +17,7 @@ public class Capacity {
     }
 
     public void setValue(int capacity) {
-        this.value = capacity;
+        if (capacity > 0) this.value = capacity;
+        else this.value = 0;
     }
 }
