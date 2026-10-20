@@ -1,4 +1,25 @@
 package module.fabric;
 
-public class StandardModuleFactory {
+import module.types.energyRelated.EnergyModule;
+import module.types.energyRelated.impl.SolarModule;
+import module.types.research.ResearchModule;
+import module.types.research.impl.BiologyLab;
+import module.types.residential.ResidentialModule;
+import module.types.residential.impl.CrewCabin;
+
+public class StandardModuleFactory implements  ModuleFactory {
+    @Override
+    public ResidentialModule createResidentialModule() {
+        return new CrewCabin();
+    }
+
+    @Override
+    public EnergyModule createEnergyModule() {
+        return new SolarModule();
+    }
+
+    @Override
+    public ResearchModule createResearchModule() {
+        return new BiologyLab();
+    }
 }
