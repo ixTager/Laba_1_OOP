@@ -1,8 +1,7 @@
 package module;
 
 public enum ModuleState {
-    ACTIVE,
+    ON,
     REPAIR,
-    ACCIDENT,
-    DEACTIVATE
+    EMERGENCY
 }

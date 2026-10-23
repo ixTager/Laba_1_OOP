@@ -1,6 +1,7 @@
 package Station;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import module.Module;
@@ -15,6 +16,9 @@ public class Station {
     }
 
     public Station(int maxCountModules) {
+        if (maxCountModules <= 0) {
+            throw new  IllegalArgumentException("maxCountModules must be greater than 0");
+        }
         this.maxModules = maxCountModules;
         this.modules = new ArrayList<>(maxCountModules);
     }
@@ -33,7 +37,7 @@ public class Station {
     }
 
     public void addModule(Module module) {
-        if (modules.size() == maxModules) {
+        if (modules.size() >= maxModules) {
             System.out.println("Max modules exceeded");
             return;
         }
@@ -55,7 +59,9 @@ public class Station {
         }
     }
 
-    public void transferFrom(Station station) {
+    public void transferFrom(Station station){
+        if (station == null) throw new NullPointerException("Station cannot be null");
+        if (modules.size() + station.modules.size() > maxModules) throw new IllegalArgumentException("Max modules exceeded");
         modules.addAll(station.modules);
         station.modules.clear();
     }
@@ -63,4 +69,14 @@ public class Station {
     public Iterator<Module> getIterator() {
         return modules.iterator();
     }
+
+//    public void sortByEfficiency() {
+//        List<Module> newSortedModules = new ArrayList<>();
+//        Iterator<Module> iterator = modules.iterator();
+//        while (iterator.hasNext()) {
+//            newSortedModules.add(iterator.next());
+//        }
+//        newSortedModules.sort(Comparator.comparing(m -> m.efficiency));
+//        this.modules = newSortedModules;
+//    }
 }

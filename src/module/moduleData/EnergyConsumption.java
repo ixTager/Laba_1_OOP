@@ -8,8 +8,8 @@ public class EnergyConsumption {
     }
 
     public EnergyConsumption(int value) {
-        if (value > 0) this.value = value;
-        else this.value = 0;
+        if (value >= 0) this.value = value;
+        else throw new IllegalArgumentException("Value cannot be negative");
     }
 
     public int getValue() {
@@ -18,14 +18,17 @@ public class EnergyConsumption {
 
     public void setValue(int energyConsumption) {
         if (energyConsumption > 0) this.value = energyConsumption;
-        else this.value = 0;
+        else throw new IllegalArgumentException("EnergyConsumption cannot be negative");
     }
 
     public void increase(int amount) {
+        if (amount < 0) throw new IllegalArgumentException("Amount cannot be negative");
         this.value += amount;
     }
 
     public void decrease(int amount) {
+        if (amount < 0) throw new IllegalArgumentException("Amount cannot be negative");
+        if ((value - amount) < 0) throw new IllegalArgumentException("Value cannot be negative");
         this.value -= amount;
     }
 }

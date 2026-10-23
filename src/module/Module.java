@@ -5,18 +5,34 @@ import module.moduleData.Durability;
 import module.moduleData.EnergyConsumption;
 
 public abstract class Module {
-    int id;
-    String name;
-    int efficiency;
-    ModuleState state;
-    Durability durability;
-    EnergyConsumption energyConsumption;
-    Capacity capacity;
+    private int id;
+    private String name;
+    private int efficiency;
+    private ModuleState state;
+    private Durability durability;
+    private EnergyConsumption energyConsumption;
+    private Capacity capacity;
 
     static int nextId = 0;
 
-    public Module() {
+    public Module(String name, int efficiency) {
+        if (efficiency < 0) throw new IllegalArgumentException("Efficiency cannot be negative");
+        else if (efficiency > 100) throw new IllegalArgumentException("Efficiency cannot be higher than 100");
+
         this.id = nextId + 1;
+        this.name = name;
+        this.efficiency = efficiency;
+        this.state = ModuleState.ON;
+
+        nextId++;
+    }
+
+    public Module(String name) {
+        this.id = nextId++;
+        this.name = name;
+        this.efficiency = 0;
+        this.state = ModuleState.ON;
+
         nextId++;
     }
 
@@ -24,26 +40,32 @@ public abstract class Module {
         return this.id;
     }
 
-    public void clone(Module module) {
-        this.id = module.id;
-        this.name = module.name;
-        this.efficiency = module.efficiency;
-        this.state = module.state;
-        this.durability = module.durability;
-        this.energyConsumption = module.energyConsumption;
-        this.capacity = module.capacity;
-    }
-
-    public String getType() {
+    public String getName() {
         return this.name;
     }
 
+    public int getEfficiency() {
+        return this.efficiency;
+    }
+
+    public ModuleState getState() {
+        return this.state;
+    }
+
+    public Durability getDurability() {
+        return this.durability;
+    }
+
+    public abstract void clone(Module module);
+
+    public abstract String getType();
+
     public void activate() {
-        this.state = ModuleState.ACTIVE;
+        this.state = ModuleState.ON;
     }
 
     public void deactivate() {
-        this.state = ModuleState.DEACTIVATE;
+        this.state = ModuleState.ON;
     }
 
     public void setState(ModuleState state) {
