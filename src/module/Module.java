@@ -13,27 +13,36 @@ public abstract class Module {
     private EnergyConsumption energyConsumption;
     private Capacity capacity;
 
-    static int nextId = 0;
+    private static int nextId = 0;
 
-    public Module(String name, int efficiency) {
-        if (efficiency < 0) throw new IllegalArgumentException("Efficiency cannot be negative");
-        else if (efficiency > 100) throw new IllegalArgumentException("Efficiency cannot be higher than 100");
+    public Module(int efficiency, String name) {
+        if (!checkValidEfficiency(efficiency)) throw new IllegalArgumentException("Invalid efficiency");
 
-        this.id = nextId + 1;
+        this.id = ++nextId;
         this.name = name;
         this.efficiency = efficiency;
         this.state = ModuleState.ON;
-
-        nextId++;
+        this.durability = new Durability();
+        this.energyConsumption = new EnergyConsumption();
+        this.capacity = new Capacity();
     }
 
-    public Module(String name) {
-        this.id = nextId++;
-        this.name = name;
-        this.efficiency = 0;
-        this.state = ModuleState.ON;
+    public Module(
+            int efficiency, String name, ModuleState state, Durability durability,
+            EnergyConsumption energyConsumption, Capacity capacity) {
+        if (!checkValidEfficiency(efficiency)) throw new IllegalArgumentException("Invalid efficiency");
 
-        nextId++;
+        this.id = ++nextId;
+        this.name = name;
+        this.efficiency = efficiency;
+        this.state = state;
+        this.durability = new Durability(durability.getValue());
+        this.energyConsumption = new EnergyConsumption(energyConsumption.getValue());
+        this.capacity = new Capacity(capacity.getValue());
+    }
+
+    public boolean checkValidEfficiency(int efficiency) {
+        return efficiency >= 0 && efficiency <= 100;
     }
 
     public int getId() {
@@ -56,7 +65,15 @@ public abstract class Module {
         return this.durability;
     }
 
-    public abstract void clone(Module module);
+    public EnergyConsumption getEnergyConsumption() {
+        return this.energyConsumption;
+    }
+
+    public Capacity getCapacity() {
+        return this.capacity;
+    }
+
+    public abstract Module clone();
 
     public abstract String getType();
 
@@ -65,10 +82,11 @@ public abstract class Module {
     }
 
     public void deactivate() {
-        this.state = ModuleState.ON;
+        this.state = ModuleState.OFF;
     }
 
     public void setState(ModuleState state) {
+        if (state == null) throw new IllegalArgumentException("ModuleState cannot be null");
         this.state = state;
     }
 }

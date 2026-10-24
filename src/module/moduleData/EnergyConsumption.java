@@ -17,7 +17,7 @@ public class EnergyConsumption {
     }
 
     public void setValue(int energyConsumption) {
-        if (energyConsumption > 0) this.value = energyConsumption;
+        if (energyConsumption >= 0) this.value = energyConsumption;
         else throw new IllegalArgumentException("EnergyConsumption cannot be negative");
     }
 

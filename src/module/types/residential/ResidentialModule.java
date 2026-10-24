@@ -4,11 +4,14 @@ import module.Module;
 
 public class ResidentialModule extends Module {
     public ResidentialModule() {
-        super("ResidentialModule", 5);
+        super(5, "ResidentialModule");
     }
 
     @Override
-    public void clone(Module module) {};
+    public Module clone() {
+        //Todo
+        return null;
+    }
 
     @Override
     public String getType() {

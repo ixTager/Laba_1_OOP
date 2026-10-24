@@ -4,11 +4,14 @@ import module.Module;
 
 public class ResearchModule extends Module {
     public ResearchModule() {
-        super("ResearchModule", 2);
+        super(2, "ResearchModule");
     }
 
     @Override
-    public void clone(Module module) {}
+    public Module clone() {
+        //Todo
+        return null;
+    }
 
     @Override
     public String getType() {

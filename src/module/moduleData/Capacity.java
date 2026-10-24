@@ -8,8 +8,8 @@ public class Capacity {
     }
 
     public Capacity(int capacity) {
-        if (capacity > 0) this.value = capacity;
-        else this.value = 0;
+        if (capacity >= 0) this.value = capacity;
+        else throw new IllegalArgumentException("Capacity must be a positive integer");
     }
 
     public int getValue() {
@@ -17,7 +17,7 @@ public class Capacity {
     }
 
     public void setValue(int capacity) {
-        if (capacity > 0) this.value = capacity;
-        else this.value = 0;
+        if (capacity >= 0) this.value = capacity;
+        else throw new IllegalArgumentException("Capacity must be a positive integer");
     }
 }

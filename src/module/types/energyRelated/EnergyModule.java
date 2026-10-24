@@ -5,11 +5,14 @@ import module.Module;
 public class EnergyModule extends Module {
 
     public EnergyModule() {
-        super("EnergyModule", 2);
+        super(2, "EnergyModule");
     }
 
     @Override
-    public void clone(Module module) {}
+    public Module clone() {
+        //Todo
+        return null;
+    }
 
     @Override
     public String getType() {

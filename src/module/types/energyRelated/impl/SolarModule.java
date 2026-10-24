@@ -6,7 +6,8 @@ import module.types.energyRelated.EnergyModule;
 
 public class SolarModule extends EnergyModule {
     @Override
-    public void clone(Module module) {
-
+    public Module clone() {
+        //Todo
+        return null;
     }
 }

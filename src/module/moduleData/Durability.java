@@ -6,7 +6,7 @@ public class Durability {
 
     public Durability() {
         this.value = 0;
-        this.maxDurability = 0;
+        this.maxDurability = 1;
     }
 
     public Durability(int durability) {
@@ -22,21 +22,21 @@ public class Durability {
     }
 
     public void setValue(int durability) {
-        if (durability >= 0) {
-            this.value = durability;
-        }
-        else throw new IllegalArgumentException("Durability cannot be negative");
+        if (durability > maxDurability) throw new IllegalArgumentException("Durability cannot be greater than maxDurability");
+        else if (durability < 0) throw new IllegalArgumentException("Durability cannot be negative");
+        this.value = durability;
+
     }
 
     public void decrease(int amount) {
         if (amount < 0) throw new IllegalArgumentException("Amount cannot be negative");
         if ((value - amount) < 0) throw new IllegalArgumentException("Value cannot be negative");
-        else this.value -= amount;
+        this.value -= amount;
     }
 
     public void repair(int amount) {
-        if ((this.value + amount) > maxDurability) throw new IllegalArgumentException("Max durability exceeded");
-        else if (amount < 0) throw new IllegalArgumentException("Amount cannot be negative");
+        if (amount < 0) throw new IllegalArgumentException("Amount cannot be negative");
+        else if ((this.value + amount) > maxDurability) throw new IllegalArgumentException("Max durability exceeded");
         this.value += amount;
     }
 }
