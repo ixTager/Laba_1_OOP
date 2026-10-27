@@ -81,11 +81,12 @@ public class Station {
 
     public void sortByEfficiency() {
         List<Module> newSortedModules = new ArrayList<>();
-        Iterator<Module> iterator = modules.iterator();
+        Iterator<Module> iterator = new StationIterator(modules);
         while (iterator.hasNext()) {
             newSortedModules.add(iterator.next());
         }
-        newSortedModules.sort(Comparator.comparing(m -> m.getEfficiency()));
+        newSortedModules.sort(Comparator.comparingInt(Module::getEfficiency));
+
         this.modules = newSortedModules;
     }
 }
