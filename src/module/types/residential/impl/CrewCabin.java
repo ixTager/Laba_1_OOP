@@ -7,7 +7,6 @@ public class CrewCabin extends ResidentialModule {
 
     @Override
     public Module clone() {
-        //Todo
-        return null;
+        return super.clone();
     }
 }

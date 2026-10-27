@@ -7,7 +7,6 @@ public class MedicalCabin extends ResidentialModule {
 
     @Override
     public Module clone() {
-        //Todo
-        return null;
+        return super.clone();
     }
 }

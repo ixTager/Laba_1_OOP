@@ -7,10 +7,13 @@ public class ResidentialModule extends Module {
         super(5, "ResidentialModule");
     }
 
+
+    public ResidentialModule(Module module) {
+        super(module);
+    }
     @Override
     public Module clone() {
-        //Todo
-        return null;
+        return new ResidentialModule(this);
     }
 
     @Override

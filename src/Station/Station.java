@@ -7,12 +7,14 @@ import java.util.List;
 import module.Module;
 
 public class Station {
-    int maxModules;
-    List<Module> modules;
+    private final int maxModules;
+    private StationIterator stationIterator;
+    private List<Module> modules;
 
     public Station() {
         this.maxModules = 1;
-        this.modules = new ArrayList<>(1);
+        this.modules = new ArrayList<>();
+        this.stationIterator = new StationIterator();
     }
 
     public Station(int maxCountModules) {
@@ -21,9 +23,12 @@ public class Station {
         }
         this.maxModules = maxCountModules;
         this.modules = new ArrayList<>();
+        this.stationIterator = new StationIterator();
     }
 
     public Station(Station station) {
+        if (this == station) throw new IllegalArgumentException("Station already exists");
+
         this.maxModules = station.maxModules;
         this.modules = new ArrayList<>();
         if (station.modules != null) {
@@ -32,6 +37,7 @@ public class Station {
             }
         }
         else this.modules = new ArrayList<>();
+        this.stationIterator = new StationIterator();
     }
 
     public Module findById(int id) {
@@ -69,8 +75,8 @@ public class Station {
         station.modules.clear();
     }
 
-    public Iterator<Module> getIterator() {
-        return modules.iterator();
+    public StationIterator getIterator() {
+        return new StationIterator();
     }
 
     public void sortByEfficiency() {

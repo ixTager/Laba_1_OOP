@@ -7,10 +7,12 @@ public class ResearchModule extends Module {
         super(2, "ResearchModule");
     }
 
+    public ResearchModule(Module module) {
+        super(module);
+    }
     @Override
     public Module clone() {
-        //Todo
-        return null;
+        return new ResearchModule(this);
     }
 
     @Override

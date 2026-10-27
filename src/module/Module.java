@@ -41,6 +41,16 @@ public abstract class Module {
         this.capacity = new Capacity(capacity.getValue());
     }
 
+    public Module(Module module) {
+        this.id = ++nextId;
+        this.name = module.name;
+        this.efficiency = module.efficiency;
+        this.state = module.state;
+        this.durability = new Durability(module.durability.getValue());
+        this.energyConsumption = new EnergyConsumption(module.energyConsumption.getValue());
+        this.capacity = new Capacity(module.capacity.getValue());
+    }
+
     public boolean checkValidEfficiency(int efficiency) {
         return efficiency >= 0 && efficiency <= 100;
     }
