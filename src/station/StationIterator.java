@@ -9,14 +9,13 @@ import module.Module;
 public class StationIterator implements Iterator<Module> {
     private final List<Module> modules;
     private int current = 0;
-    private int end = -1;
 
     public StationIterator() {
         this.modules = new ArrayList<Module>();
-
     }
 
     public StationIterator(List<Module> modules) {
+        if (modules == null) throw new IllegalArgumentException("Modules cannot be null");
         this.modules = modules;
     }
 

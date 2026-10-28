@@ -5,7 +5,7 @@ public class Durability {
     private int maxDurability;
 
     public Durability() {
-        this.value = 0;
+        this.value = 1;
         this.maxDurability = 1;
     }
 

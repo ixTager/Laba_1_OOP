@@ -8,13 +8,11 @@ import module.Module;
 
 public class Station implements Iterable<Module> {
     private final int maxModules;
-    private StationIterator stationIterator;
     private List<Module> modules;
 
     public Station() {
         this.maxModules = 1;
         this.modules = new ArrayList<>();
-        this.stationIterator = new StationIterator();
     }
 
     public Station(int maxCountModules) {
@@ -23,10 +21,10 @@ public class Station implements Iterable<Module> {
         }
         this.maxModules = maxCountModules;
         this.modules = new ArrayList<>();
-        this.stationIterator = new StationIterator();
     }
 
     public Station(Station station) {
+        if (station == null) throw new IllegalArgumentException("Station object is null");
         if (this == station) throw new IllegalArgumentException("Station already exists");
 
         this.maxModules = station.maxModules;
@@ -37,7 +35,6 @@ public class Station implements Iterable<Module> {
             }
         }
         else this.modules = new ArrayList<>();
-        this.stationIterator = new StationIterator();
     }
 
     public Module findById(int id) {
@@ -76,23 +73,16 @@ public class Station implements Iterable<Module> {
     }
 
     public StationIterator getIterator() {
-        return new StationIterator();
+        return new StationIterator(modules);
     }
 
     @Override
     public Iterator<Module> iterator() {
-        return new StationIterator();
+        return new StationIterator(modules);
     }
 
     public void sortByEfficiency() {
-        List<Module> newSortedModules = new ArrayList<>();
-        Iterator<Module> iterator = new StationIterator(modules);
-        while (iterator.hasNext()) {
-            newSortedModules.add(iterator.next());
-        }
-        newSortedModules.sort(Comparator.comparingInt(Module::getEfficiency));
-
-        this.modules = newSortedModules;
+        modules.sort(Comparator.comparingInt(Module::getEfficiency));
     }
 
 }
