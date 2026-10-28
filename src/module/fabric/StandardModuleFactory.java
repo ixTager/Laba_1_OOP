@@ -8,17 +8,14 @@ import module.types.residential.ResidentialModule;
 import module.types.residential.impl.CrewCabin;
 
 public class StandardModuleFactory implements  ModuleFactory {
-    @Override
     public ResidentialModule createResidentialModule() {
         return new CrewCabin();
     }
 
-    @Override
     public EnergyModule createEnergyModule() {
         return new SolarModule();
     }
 
-    @Override
     public ResearchModule createResearchModule() {
         return new BiologyLab();
     }

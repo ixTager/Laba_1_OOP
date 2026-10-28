@@ -1,4 +1,4 @@
-package Station;
+package station;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import module.Module;
 
-public class Station {
+public class Station implements Iterable<Module> {
     private final int maxModules;
     private StationIterator stationIterator;
     private List<Module> modules;
@@ -79,6 +79,11 @@ public class Station {
         return new StationIterator();
     }
 
+    @Override
+    public Iterator<Module> iterator() {
+        return new StationIterator();
+    }
+
     public void sortByEfficiency() {
         List<Module> newSortedModules = new ArrayList<>();
         Iterator<Module> iterator = new StationIterator(modules);
@@ -89,4 +94,5 @@ public class Station {
 
         this.modules = newSortedModules;
     }
+
 }
